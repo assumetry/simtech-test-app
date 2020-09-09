@@ -1,38 +1,35 @@
 import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getStaffData } from '../../store/reducers/staffReducer';
+import { NavLink } from 'react-router-dom';
+import DepartmentItem from './DepartmentItem';
 
 class StaffPage extends React.Component {
-    constructor(props) {
-        super(props)
+
+    componentDidMount() {
+        this.props.getStaffData()
     }
 
-    componentDidUpdate() {
-        alert('update')
-    }
-
+    
     render() {
-        if (this.props.isAuth === false) {
-            return <Redirect to={'/'} />
-        }
-
         return <>
-            <div>
-                <NavLink to='/createMember'><button>Create Member</button></NavLink>
-            </div>
-
-            <div>
-               
-            </div>
-
+            <NavLink to={'/createMember'}>
+                <button>Create Member</button>
+            </NavLink>
+            {
+                this.props.department.map((i) => {
+                    return <DepartmentItem department={i} />
+                })
+            }
         </>
     }
 }
-let mapStateToProps = (state) => {
-    // console.log(state)
+const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
+        memberList: state.staffReducer.memberList,
+        department: state.staffReducer.department,
     }
 }
-
-export default connect(mapStateToProps, {})(StaffPage)
+export default connect(mapStateToProps, {
+    getStaffData,
+})(StaffPage)
