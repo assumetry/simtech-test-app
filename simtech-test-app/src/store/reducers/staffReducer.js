@@ -7,19 +7,16 @@ let initialState = {
 };
 
 let staffReducer = (state = initialState, action) => {
-  
+
     switch (action.type) {
 
         case ('ADD_STAFF_MEMBER'): {
             // console.log(action.data)
-            if (true) {
-                let newStaffMember = { ...action.data }
-                return {
-                    ...state,
-                    memberList: [...state.memberList, newStaffMember]
-                };
+            let newStaffMember = { ...action.data, isAdmin: false }
+            return {
+                ...state,
+                memberList: [...state.memberList, newStaffMember]
             };
-            return state;
         }
 
         case ('SET_STAFF_DATA'): {
@@ -44,7 +41,6 @@ const setStaffData = (totalStaffNumber, department, memberList) => ({
 
 export const addMember = (data) => {
     let id = 5;
-    id++;
     return { type: 'ADD_STAFF_MEMBER', data: { id: id, ...data } }
 };
 

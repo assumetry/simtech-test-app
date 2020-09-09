@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getStaffData } from '../../store/reducers/staffReducer';
-import { NavLink } from 'react-router-dom';
 import DepartmentItem from './DepartmentItem';
+import CreateMemberContainer from './createMemberContainer/CreateMemberContainer';
 
 class StaffPage extends React.Component {
 
@@ -10,17 +10,18 @@ class StaffPage extends React.Component {
         this.props.getStaffData()
     }
 
-    
     render() {
+        console.log('updated');
         return <>
-            <NavLink to={'/createMember'}>
-                <button>Create Member</button>
-            </NavLink>
             {
                 this.props.department.map((i) => {
-                    return <DepartmentItem department={i} />
+                    debugger;
+                    return <DepartmentItem department={i} memberList={this.props.memberList} />
                 })
             }
+            <div>
+                <CreateMemberContainer />
+            </div>
         </>
     }
 }

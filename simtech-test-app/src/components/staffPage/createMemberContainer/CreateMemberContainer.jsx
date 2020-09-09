@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addMember } from '../../../store/reducers/staffListR'
-import CreateMemberPage from './CreateMemberPage';
-import { withRouter } from 'react-router-dom'
+import { addMember } from '../../../store/reducers/staffReducer'
+import CreateMember from './CreateMember';
 
 let CreateMemberContainer = (props) => {
 
     let addMember = (formData) => {
         props.addMember(formData)
-        props.history.push('/staff')
     }
     return (
         <div>
-            <CreateMemberPage addMember={addMember}/>
+            <CreateMember addMember={addMember} />
         </div>
     )
 }
@@ -24,9 +22,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let CreateMember = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     addMember
 })(CreateMemberContainer)
-
-export default withRouter(CreateMember)
 

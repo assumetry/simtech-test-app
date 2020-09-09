@@ -29,19 +29,22 @@ let CreateMemberFrom = (props) => {
                 <Field name="password" component="input" type="text" placeholder='Пароль' />
             </div>
             <div>
-                <Field name="FIO" component="input" type="text" placeholder='ФИО' />
+                <Field name="userPhoto" component="input" type="text" placeholder='userPhoto' />
             </div>
             <div>
-                <Field name="avatar" component="input" type="text" placeholder='Аватар' />
+                <Field name="userName" component="input" type="text" placeholder='userName' />
             </div>
             <div>
-                <Field name='department' component="input" type="select-multiple" placeholder='Отдел' />
+                <Field name="userLastname" component="input" type="text" placeholder='userLastname' />
             </div>
             <div>
-                <Field name="email" component="input" type="email" placeholder='Email' />
+                <Field name='userDepartment' component="input" type="select-multiple" placeholder='Отдел' />
             </div>
             <div>
-                <Field name="phoneNumber" component="input" type="text" placeholder='Телефон' />
+                <Field name="userEmail" component="input" type="email" placeholder='Email' />
+            </div>
+            <div>
+                <Field name="userPhoneNumber" component="input" type="text" placeholder='Телефон' />
             </div>
             <div>
                 <button>Добавить сотрудника</button>
