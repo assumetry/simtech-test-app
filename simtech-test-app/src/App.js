@@ -23,6 +23,7 @@ const App = (props) => {
         </Route>
         <Route path={'/staffMEMBER'}>
           <StaffItemCard
+            isAuth={props.state.isAuth}
             userPhoto={props.state.userPhoto}
             userName={props.state.userName}
             userLastname={props.state.userLastname}

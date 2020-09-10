@@ -28,17 +28,14 @@ let authReducer = (state = initialState, action) => {
     }
 }
 
-export const SET_USER_DATA = (id, login, password, isAdmin, isAuth) => ({
-    type: 'LOG_IN',
-    payload: { id, login, password, isAdmin, isAuth, }
-})
+export const SET_USER_DATA = (payload) => ({ type: 'LOG_IN', payload, })
 
-export const getUserData = (id, login, password, isAdmin) => (dispatch) => {
+export const getUserData = (data) => (dispatch) => {
     // debugger
     let loggedIn = authAPI.me()
     if (loggedIn === true) {
         console.log('server response: logged In');
-        dispatch(SET_USER_DATA(id, login, password, isAdmin, true))
+        dispatch(SET_USER_DATA({ ...data }))
     }
 }
 
@@ -51,20 +48,9 @@ export const login = (login, password) => (dispatch) => {
         console.log('server response: login successfull');
 
         if (loggedIn.isAdmin) {
-            dispatch(getUserData(loggedIn.userID, login, password, true))
+            dispatch(getUserData({ ...loggedIn }))
         } else {
-            dispatch(getUserData(
-                loggedIn.userID,
-                loggedIn.login,
-                loggedIn.password,
-                loggedIn.userPhoto,
-                loggedIn.userName,
-                loggedIn.userLastname,
-                loggedIn.userDepartment,
-                loggedIn.userEmail,
-                loggedIn.userPhoneNumber,
-                false,
-                ))
+            dispatch(getUserData({ ...loggedIn }))
         }
     }
 }

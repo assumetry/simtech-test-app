@@ -17,7 +17,7 @@ export const authAPI = {
         let data = staffAPI.staffList()
         data.memberList.map((i) => {
             if (i.login === login && i.password === password) {
-
+                debugger
                 userPhoto = i.userPhoto
                 userName = i.userName
                 userLastname = i.userLastname
@@ -35,7 +35,7 @@ export const authAPI = {
         })
 
 
-        return { isAuth: true, isAdmin, userID }
+        return { userPhoto, userName, userLastname, userDepartment, userEmail, userPhoneNumber, isAuth: true, isAdmin, userID }
     },
     logout() {
         // DELETE Запрос: Завершить сессию   
