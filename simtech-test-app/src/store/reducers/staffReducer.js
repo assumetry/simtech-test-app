@@ -1,4 +1,4 @@
-import { staffAPI } from "../api";
+import { staffAPI } from "../../api/api";
 
 let initialState = {
     totalStaffNumber: null,
@@ -11,7 +11,6 @@ let staffReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case ('ADD_STAFF_MEMBER'): {
-            // console.log(action.data)
             let newStaffMember = { ...action.data, isAdmin: false }
             return {
                 ...state,
@@ -45,13 +44,14 @@ export const addMember = (userID, data) => {
 };
 
 export const getStaffData = () => (dispatch) => {
-    // Получаем данные с сервера
+    // Запрашиваем данные с сервера
     let data = staffAPI.staffList()
 
+    // Полученные данные записываем для дальнейшего использования
     let totalStaffNumber = data.totalStaffNumber
     let department = [...data.department]
     let memberList = [...data.memberList]
 
-    // Диспатчим action сетаем state
+    // Диспатчим action сетаем данные в state
     dispatch(setStaffData(totalStaffNumber, department, memberList,))
 }

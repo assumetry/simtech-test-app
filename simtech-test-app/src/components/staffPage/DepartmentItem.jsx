@@ -1,16 +1,17 @@
 import React from 'react';
 import StaffItemCard from '../StaffItemCard/StaffItemCard';
 import { NavLink, Route } from 'react-router-dom';
+import style from './DepartmentItem.module.css'
 
 const DepartmentItem = (props) => {
-    console.log(props)
-
+   
     let newArr = props.memberList.map((i) => {
         if (i.userDepartment === props.department) {
             return <div>
-                <NavLink to={'/staff/' + i.userID}>{i.userName}</NavLink>
+                <NavLink activeClassName={style.active} to={'/staff/' + i.userID}>{i.userName}</NavLink>
                 <Route path={'/staff/' + i.userID} render={() => {
                     return <StaffItemCard
+                        isAuth={props.isAuth}
                         userPhoto={i.userPhoto}
                         userName={i.userName}
                         userLastname={i.userLastname}
@@ -25,7 +26,7 @@ const DepartmentItem = (props) => {
     })
     return (
         <>
-            <div>{props.department}</div>
+            <div className={style.departmentName}>{props.department}</div>
             <div>{newArr}</div>
         </>)
 }

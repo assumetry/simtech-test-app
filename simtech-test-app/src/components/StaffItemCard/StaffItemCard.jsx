@@ -1,10 +1,10 @@
 import React from 'react';
 import blank_img from '../../assets/img/blank_img.jpg'
 import style from './StaffItemCard.module.css'
+import { withAutoRedirect } from '../../hoc/autoRedirect'
 
 const StaffItemCard = (props) => {
-    console.log(props)
-    // debugger
+
     return (<>
         <div className={style.item}>
             <div>
@@ -34,4 +34,4 @@ const StaffItemCard = (props) => {
     )
 }
 
-export default StaffItemCard
+export default withAutoRedirect(StaffItemCard)

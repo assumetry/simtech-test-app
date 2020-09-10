@@ -5,6 +5,7 @@ export const authAPI = {
     },
     login(login, password) {
         // POST Запрос: Создать авторизованную сессию   
+        // Имитация работы сервера
         let isAdmin;
         let userID;
         let userPhoto
@@ -13,7 +14,6 @@ export const authAPI = {
         let userDepartment
         let userEmail
         let userPhoneNumber
-        // Имитация работы сервера
         let data = staffAPI.staffList()
         data.memberList.map((i) => {
             if (i.login === login && i.password === password) {
@@ -34,7 +34,7 @@ export const authAPI = {
             }
         })
 
-
+        // Сервер возвращает нам объект с данными
         return { userPhoto, userName, userLastname, userDepartment, userEmail, userPhoneNumber, isAuth: true, isAdmin, userID }
     },
     logout() {
@@ -46,6 +46,8 @@ export const authAPI = {
 export const staffAPI = {
     staffList() {
         // GET Запрос: получить массив отделов\персонала
+        // Имитируем ответ сервера
+        // Получаем объект с данными, и возвращаем его
         return {
             totalStaffNumber: 0,
             department: [

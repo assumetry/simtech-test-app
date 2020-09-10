@@ -13,6 +13,7 @@ const App = (props) => {
       <div>
 
         <Route exact path='/' render={() => (
+          // Перенаправляем админа, если данные совпали
           props.state.isAuth === true && props.state.isAdmin ? <Redirect to={'/staff'} />
             : <LoginPageContainer />)} />
 
@@ -21,6 +22,7 @@ const App = (props) => {
         <Route path={'/createMember'}>
           <CreateMemberContainer />
         </Route>
+        
         <Route path={'/staffMEMBER'}>
           <StaffItemCard
             isAuth={props.state.isAuth}

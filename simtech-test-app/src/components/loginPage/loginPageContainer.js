@@ -7,13 +7,14 @@ import { login } from '../../store/reducers/authReducer'
 class LoginPageContainer extends React.Component {
 
     onSubmit = (formData) => {
-        debugger
+        // При сабмите формы, мы вызываем thunkCreator, и запускаем авторизацию пользователя
         this.props.login(formData.login, formData.password)
     }
 
     render() {
         return (
             <Route exact path='/' render={() => (
+                // Перенаправляем сотрудника к его карточке, если данные совпали
                 this.props.isAuth === true && this.props.isAdmin === false ? <Redirect to={'/staffMEMBER'} />
                   : <LoginPage onSubmit={this.onSubmit} />)} />
 

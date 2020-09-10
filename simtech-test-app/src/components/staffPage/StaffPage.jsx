@@ -6,20 +6,20 @@ import CreateMemberContainer from './createMemberContainer/CreateMemberContainer
 import { withAutoRedirect } from '../../hoc/autoRedirect'
 
 class StaffPage extends React.Component {
+
+    // При загрузке компоненты, если нет данных в store, запрашиваем их
     componentDidMount() {
-        debugger;
-        console.log(this.props);
         if (this.props.memberList.length == 0) {
             this.props.getStaffData()
         }
     }
+
     render() {
-        console.log('updated');
         return <>
             {
+                // Передаем параметр isAuth для корректной работы HOC'a
                 this.props.department.map((i) => {
-                    // debugger;
-                    return <DepartmentItem department={i} memberList={this.props.memberList}/>
+                    return <DepartmentItem department={i} isAuth={this.props.isAuth} memberList={this.props.memberList}/>
                 })
             }
             <div>
