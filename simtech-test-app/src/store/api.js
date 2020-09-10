@@ -1,11 +1,41 @@
 export const authAPI = {
     me() {
-        // GET Запрос: авторизован ли пользователь
+        // GET Запрос: проверка наличия сессии
         return true
     },
-    login() {
+    login(login, password) {
         // POST Запрос: Создать авторизованную сессию   
-        return true
+        let isAdmin;
+        let userID;
+        let userPhoto
+        let userName
+        let userLastname
+        let userDepartment
+        let userEmail
+        let userPhoneNumber
+        // Имитация работы сервера
+        let data = staffAPI.staffList()
+        data.memberList.map((i) => {
+            if (i.login === login && i.password === password) {
+
+                userPhoto = i.userPhoto
+                userName = i.userName
+                userLastname = i.userLastname
+                userDepartment = i.userDepartment
+                userEmail = i.userEmail
+                userPhoneNumber = i.userPhoneNumber
+                userID = i.userID
+
+                if (login === 'admin' && password === 'admin') {
+                    isAdmin = true
+                } else {
+                    isAdmin = false
+                }
+            }
+        })
+
+
+        return { isAuth: true, isAdmin, userID }
     },
     logout() {
         // DELETE Запрос: Завершить сессию   

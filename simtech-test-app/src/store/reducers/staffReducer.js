@@ -39,12 +39,12 @@ const setStaffData = (totalStaffNumber, department, memberList) => ({
     data: { totalStaffNumber, department, memberList }
 })
 
-export const addMember = (data) => {
-    let id = 5;
-    return { type: 'ADD_STAFF_MEMBER', data: { id: id, ...data } }
+export const addMember = (userID, data) => {
+
+    return { type: 'ADD_STAFF_MEMBER', data: { userID: userID, ...data } }
 };
 
-export const getStaffData = (totalStaffNumber, department, memberList,) => (dispatch) => {
+export const getStaffData = () => (dispatch) => {
     // Получаем данные с сервера
     let data = staffAPI.staffList()
 

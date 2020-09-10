@@ -15,7 +15,7 @@ class StaffPage extends React.Component {
         return <>
             {
                 this.props.department.map((i) => {
-                    debugger;
+                    // debugger;
                     return <DepartmentItem department={i} memberList={this.props.memberList} />
                 })
             }

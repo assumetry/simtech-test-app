@@ -4,9 +4,11 @@ import { addMember } from '../../../store/reducers/staffReducer'
 import CreateMember from './CreateMember';
 
 let CreateMemberContainer = (props) => {
+    let userID = 5;
 
     let addMember = (formData) => {
-        props.addMember(formData)
+        userID++
+        props.addMember(userID, formData)
     }
     return (
         <div>

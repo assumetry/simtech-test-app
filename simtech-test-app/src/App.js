@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-import LoginPage from './components/loginPage/loginPage';
 import StaffPage from './components/staffPage/StaffPage';
 import { connect } from 'react-redux';
 import CreateMemberContainer from './components/staffPage/createMemberContainer/CreateMemberContainer';
+import LoginPageContainer from './components/loginPage/loginPageContainer';
+import StaffItemCard from './components/StaffItemCard/StaffItemCard';
 
 const App = (props) => {
 
@@ -12,15 +13,25 @@ const App = (props) => {
       <div>
 
         <Route exact path='/' render={() => (
-          props.isAuth === true ? <Redirect to={'/staff'} />
-            : <LoginPage />)} />
+          props.state.isAuth === true && props.state.isAdmin ? <Redirect to={'/staff'} />
+            : <LoginPageContainer />)} />
 
         <Route path='/staff' render={() => <StaffPage />} />
-        
+
         <Route path={'/createMember'}>
           <CreateMemberContainer />
         </Route>
-        
+        <Route path={'/staffMEMBER'}>
+          <StaffItemCard
+            userPhoto={props.state.userPhoto}
+            userName={props.state.userName}
+            userLastname={props.state.userLastname}
+            userDepartment={props.state.userDepartment}
+            userEmail={props.state.userEmail}
+            userPhoneNumber={props.state.userPhoneNumber}
+          />
+        </Route>
+
       </div>
     </BrowserRouter>
   )
@@ -28,7 +39,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.auth.isAuth
+    state: state.auth
   }
 }
 
